@@ -4,7 +4,7 @@
  * Plugin URI: http://example.com/custom-news-manager
  * Description: A simple news management plugin for WordPress with shortcode support (Network Sites Compatible)
  * Version: 2.0.2
- * Author: ari0329
+ * Author: ari2903
  * Text Domain: custom-news-manager
  */
 
@@ -121,7 +121,7 @@ function cnews_get_meta_display_options($post_id) {
 }
 
 // Helper function to truncate text
-function cnews_truncate_text($text, $length = 20) {
+function cnews_truncate_text($text, $length = 40) {
     if (mb_strlen($text) > $length) {
         return mb_substr($text, 0, $length) . '...';
     }
@@ -162,7 +162,7 @@ function cnews_display_news_shortcode($atts) {
         
         while ($query->have_posts()) {
             $query->the_post();
-            $title = cnews_truncate_text(get_the_title(), 20);
+            $title = cnews_truncate_text(get_the_title(), 40);
             $item = '<li>';
             $item .= '<a href="' . get_permalink() . '">' . esc_html($title) . '</a>';
             $item .= '</li>';
@@ -268,7 +268,7 @@ function cnews_display_news_by_category_shortcode($atts) {
         
         while ($query->have_posts()) {
             $query->the_post();
-            $title = cnews_truncate_text(get_the_title(), 20);
+            $title = cnews_truncate_text(get_the_title(), 40);
             $item = '<li>';
             $item .= '<a href="' . get_permalink() . '">' . esc_html($title) . '</a>';
             $item .= '</li>';
@@ -372,7 +372,7 @@ function cnews_display_network_site_news_shortcode($atts) {
             
             echo '<div class="news-content">';
             
-            $title = cnews_truncate_text(get_the_title(), 20);
+            $title = cnews_truncate_text(get_the_title(), 40);
             echo '<h3 class="news-title"><a href="' . get_permalink() . '">' . $title . '</a></h3>';
             
             $meta_info = array();
@@ -579,7 +579,7 @@ function cnews_display_network_news_shortcode($atts) {
                     echo '</div>';
                 }
                 
-                $title = cnews_truncate_text($news['title'], 20);
+                $title = cnews_truncate_text($news['title'], 40);
                 echo '<h3 class="cnews-news-title"><a href="' . esc_url($news['permalink']) . '">' . esc_html($title) . '</a></h3>';
                 
                 $meta_info = array();
